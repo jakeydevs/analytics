@@ -40,6 +40,7 @@ class AnalyticServiceProvider extends ServiceProvider
         //-- Console commands
         $this->commands([
             \Jakeydevs\Analytics\Console\ParsePageview::class,
+            \Jakeydevs\Analytics\Console\CreateDummyData::class,
         ]);
     }
 }
