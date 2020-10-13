@@ -29,8 +29,17 @@ class RecordPageview
         $pv->code = $response->status();
         $pv->save();
 
-        //-- Dispatch to our parsers
-        //-- TODO
+        //-- Parsers
+        switch (config('analytics.parse', 'queue')) {
+            case "queue":
+                \Jakeydevs\Analytics\Jobs\ProcessPageview::dispatch($pv)
+                    ->onQueue(config('analytics.parse_queue', ''));
+                break;
+            case "request":
+                \Artisan::call('analytics:parse ' . $pv->id);
+            default:
+                break;
+        }
 
         //-- Return our response
         return $response;

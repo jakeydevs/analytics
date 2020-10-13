@@ -38,10 +38,8 @@ class AnalyticServiceProvider extends ServiceProvider
         );
 
         //-- Console commands
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                \Jakeydevs\Analytics\Console\ParsePageview::class,
-            ]);
-        }
+        $this->commands([
+            \Jakeydevs\Analytics\Console\ParsePageview::class,
+        ]);
     }
 }

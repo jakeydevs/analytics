@@ -79,7 +79,6 @@ class ParsePageview extends Command
             $pv,
             $info
         );
-        dd($info);
 
         //-- Report
         $took = number_format(microtime(true) - $start, 5);
