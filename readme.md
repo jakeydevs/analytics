@@ -4,7 +4,7 @@ TODO
 
 ## Installation
 
-TODO
+`$ composer require jakeydevs/analytics`
 
 ## Usage
 
