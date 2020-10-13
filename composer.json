@@ -1,0 +1,29 @@
+{
+    "name": "jakeydevs/analytics",
+    "description": "A self-hosted analytic plugin for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jakey",
+            "email": "jp@jakelprice.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "whichbrowser/parser": "dev-master",
+        "geoip2/geoip2": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jakeydevs\\Analytics\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jakeydevs\\Analytics\\AnalyticServiceProvider"
+            ]
+        }
+    }
+}
