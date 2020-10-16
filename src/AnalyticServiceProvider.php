@@ -2,6 +2,9 @@
 
 namespace Jakeydevs\Analytics;
 
+use Jakeydevs\Analytics\View\Components\Bounce;
+use Jakeydevs\Analytics\View\Components\Uniques;
+use Jakeydevs\Analytics\View\Components\Views;
 use \Illuminate\Support\ServiceProvider;
 
 class AnalyticServiceProvider extends ServiceProvider
@@ -29,6 +32,14 @@ class AnalyticServiceProvider extends ServiceProvider
 
         //-- Load database
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+        //-- Load resources
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'analytics');
+        $this->loadViewComponentsAs('analytics', [
+            Views::class,
+            Uniques::class,
+            Bounce::class,
+        ]);
 
         //-- Create our middleware
         $router = $this->app->make(\Illuminate\Routing\Router::class);
