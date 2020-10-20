@@ -4,9 +4,12 @@ namespace Jakeydevs\Analytics\View\Components;
 
 use Illuminate\View\Component;
 use Jakeydevs\Analytics\Period;
+use Jakeydevs\Analytics\Traits\Diff;
 
 class Bounce extends Component
 {
+    use Diff;
+
     //-- Vars
     public $period;
     public $compare;
@@ -22,6 +25,7 @@ class Bounce extends Component
         //-- Generate data
         $this->period = \Jakeydevs\Analytics\Analytics::getPageviews($p);
         $this->compare = \Jakeydevs\Analytics\Analytics::getPageviews(Period::compare($p));
+        $this->diff = $this->getComparison($this->compare, $this->period));
     }
 
     /**

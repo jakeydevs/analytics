@@ -89,38 +89,25 @@ class Analytics
     public static function getDuration(Period $period)
     {
         //-- Generate query
-        $data = Pageview::where('parsed', true)->where('time_spent', '>', 0);
+        $data = Pageview::selectRaw('session_id, SUM(time_spent) AS total_per_session')
+            ->where('parsed', true)
+            ->where('time_spent', '>', 0)
+            ->groupBy('session_id');
 
         //-- Add our periods
         $data->where('created_at', '>=', $period->startDate)
             ->where('created_at', '<', $period->endDate);
+
+        $session_times = $data->get();
+
+        //-- Calc average
+        $average = 0;
+        if (($session_times->sum('total_per_session') > 0) && count($session_times) > 0) {
+            $average = $session_times->sum('total_per_session') / count($session_times);
+        }
 
         //-- Return
-        return (int) $data->avg('time_spent');
-    }
-
-    /**
-     * Get the top pages for this date period
-     *
-     * @param Period $period
-     * @return array
-     */
-    public static function getMostVisitedPages(Period $period)
-    {
-        //-- Create query
-        $data = Pageview::select(\DB::raw('path, count(*) as count'))
-            ->where('parsed', true)
-            ->distinct('session_id')
-            ->groupBy('path')
-            ->orderBy('count', 'desc');
-
-        //-- Add our periods
-        $data->where('created_at', '>=', $period->startDate)
-            ->where('created_at', '<', $period->endDate);
-
-        //-- Array
-        $pages = $data->get()->toArray();
-        return $pages;
+        return (int) $average;
     }
 
     /**
@@ -134,6 +121,7 @@ class Analytics
     {
         $data = Pageview::select(\DB::raw($column . ', count(*) as count'))
             ->where('parsed', true)
+            ->distinct('session_id')
             ->groupBy($column)
             ->orderBy('count', 'desc');
 

@@ -31,7 +31,7 @@ class Period
      */
     public static function days(int $days)
     {
-        $endDate = Carbon::today();
+        $endDate = Carbon::now();
         $startDate = Carbon::today()->subDays($days)->startofDay();
         return new static($startDate, $endDate, $days);
     }
