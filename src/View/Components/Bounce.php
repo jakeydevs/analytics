@@ -25,7 +25,7 @@ class Bounce extends Component
         //-- Generate data
         $this->period = \Jakeydevs\Analytics\Analytics::getPageviews($p);
         $this->compare = \Jakeydevs\Analytics\Analytics::getPageviews(Period::compare($p));
-        $this->diff = $this->getComparison($this->compare, $this->period));
+        $this->diff = $this->getComparison($this->compare, $this->period);
     }
 
     /**

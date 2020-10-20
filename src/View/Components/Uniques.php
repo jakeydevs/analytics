@@ -3,11 +3,14 @@
 namespace Jakeydevs\Analytics\View\Components;
 
 use Illuminate\View\Component;
+use Jakeydevs\Analytics\Period;
+use Jakeydevs\Analytics\Traits\Diff;
 
 class Uniques extends Component
 {
+    use Diff;
+
     //-- Vars
-    public $title;
     public $period;
     public $compare;
     public $diff;
@@ -17,16 +20,12 @@ class Uniques extends Component
      *
      * @return void
      */
-    public function __construct($title = 'Uniques')
+    public function __construct(Period $p)
     {
-        $this->title = $title;
-
-        $data = (new \Jakeydevs\Analytics\Actions\Stats\Unique)->get([
-            'period' => 'today',
-        ]);
-        $this->period = $data['period'];
-        $this->compare = $data['compare'];
-        $this->diff = $data['change'];
+        //-- Generate data
+        $this->period = \Jakeydevs\Analytics\Analytics::getUnique($p);
+        $this->compare = \Jakeydevs\Analytics\Analytics::getUnique(Period::compare($p));
+        $this->diff = $this->getComparison($this->compare, $this->period);
     }
 
     /**
