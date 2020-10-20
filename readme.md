@@ -12,11 +12,11 @@ System built on Laravel 8. Not tested on anything under version 8.
 
 Once installed, run migrations to allow the system to record pageviews!
 
-## Usage
+## Record Pageviews
 
 To record pageviews, you'll need to add a specific middleware to your routes. This middleware, when ran, will save each pageview to the system. The middleware is named `pageview`.
 
-The easiest way to get the system recording is to set the middleware to run when the web routes are ran:
+**To save on all pageviews to your system** set the middleware to run when the web routes are ran. The best way to do this is by setting the middleware on the RouteServiceProvider
 
 `app\Providers\RouteServiceProvider.php`
 
@@ -30,6 +30,9 @@ Route::middleware(['web', 'pageview'])
 
 **Is this GDPR comliant?**
 I think so? I am not a lawyer - and if you are not either, you should totally talk to one if you are worried about GDPR.
+
+**Does this work on SPAs**
+At the moment no as it only records a pageview on a page request.
 
 ## Contributing
 
