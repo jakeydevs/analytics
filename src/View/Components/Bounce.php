@@ -3,11 +3,11 @@
 namespace Jakeydevs\Analytics\View\Components;
 
 use Illuminate\View\Component;
+use Jakeydevs\Analytics\Period;
 
 class Bounce extends Component
 {
     //-- Vars
-    public $title;
     public $period;
     public $compare;
     public $diff;
@@ -17,16 +17,11 @@ class Bounce extends Component
      *
      * @return void
      */
-    public function __construct($title = 'Bounce')
+    public function __construct(Period $p)
     {
-        $this->title = $title;
-
-        $data = (new \Jakeydevs\Analytics\Actions\Stats\Bounce)->get([
-            'period' => 'today',
-        ]);
-        $this->period = $data['period'];
-        $this->compare = $data['compare'];
-        $this->diff = $data['change'];
+        //-- Generate data
+        $this->period = \Jakeydevs\Analytics\Analytics::getPageviews($p);
+        $this->compare = \Jakeydevs\Analytics\Analytics::getPageviews(Period::compare($p));
     }
 
     /**

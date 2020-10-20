@@ -1,9 +1,9 @@
 <?php
 
-namespace Jakeydevs\Analytics\Actions;
+namespace Jakeydevs\Analytics;
 
-use Jakeydevs\Analytics\Actions\Period;
 use Jakeydevs\Analytics\Models\Pageview;
+use Jakeydevs\Analytics\Period;
 
 class Analytics
 {
@@ -55,7 +55,7 @@ class Analytics
     {
         //-- Get unique data for this period for generating the
         //-- Percentage
-        $uniques = \Jakeydevs\Analytics\Actions\Analytics::getUnique($period);
+        $uniques = \Jakeydevs\Analytics\Analytics::getUnique($period);
 
         //-- Query for the bounce rate
         $bounces = PageView::select("*")
