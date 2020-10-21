@@ -10,7 +10,9 @@ System built on Laravel 8. Not tested on anything under version 8.
 
 `$ composer require jakeydevs/analytics`
 
-Once installed, run migrations to allow the system to record pageviews!
+Once installed, run migrations to allow the system to record pageviews! To edit the configuration for the package, you can publish the config file to make edits:
+
+`php artisan vendor:publish --provider="Jakeydevs\Analytics\AnalyticServiceProvider" --tag="config"`
 
 ## Record Pageviews
 

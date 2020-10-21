@@ -54,5 +54,14 @@ class AnalyticServiceProvider extends ServiceProvider
             \Jakeydevs\Analytics\Console\ParsePageview::class,
             \Jakeydevs\Analytics\Console\CreateDummyData::class,
         ]);
+
+        //-- What can the user edit?
+        if ($this->app->runningInConsole()) {
+            //-- Config
+            $this->publishes([
+                __DIR__ . '/../config/analytics.php' => config_path('analytics.php'),
+            ], 'config');
+            //-- TODO: Views
+        }
     }
 }
