@@ -36,9 +36,10 @@ class AnalyticServiceProvider extends ServiceProvider
         //-- Load resources
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'analytics');
         $this->loadViewComponentsAs('analytics', [
-            Views::class,
-            Uniques::class,
-            Bounce::class,
+            \Jakeydevs\Analytics\View\Components\Views::class,
+            \Jakeydevs\Analytics\View\Components\Uniques::class,
+            \Jakeydevs\Analytics\View\Components\Bounce::class,
+            \Jakeydevs\Analytics\View\Components\Duration::class,
         ]);
 
         //-- Create our middleware

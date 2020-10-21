@@ -3,11 +3,14 @@
 namespace Jakeydevs\Analytics\View\Components;
 
 use Illuminate\View\Component;
+use Jakeydevs\Analytics\Period;
+use Jakeydevs\Analytics\Traits\Diff;
 
 class Views extends Component
 {
+    use Diff;
+
     //-- Vars
-    public $title;
     public $period;
     public $compare;
     public $diff;
@@ -17,16 +20,12 @@ class Views extends Component
      *
      * @return void
      */
-    public function __construct($title = 'Pageviews')
+    public function __construct(Period $p)
     {
-        $this->title = $title;
-
-        $data = (new \Jakeydevs\Analytics\Actions\Stats\Views)->get([
-            'period' => 'today',
-        ]);
-        $this->period = $data['period'];
-        $this->compare = $data['compare'];
-        $this->diff = $data['change'];
+        //-- Generate data
+        $this->period = \Jakeydevs\Analytics\Analytics::getPageviews($p);
+        $this->compare = \Jakeydevs\Analytics\Analytics::getPageviews(Period::compare($p));
+        $this->diff = $this->getComparison($this->compare, $this->period);
     }
 
     /**

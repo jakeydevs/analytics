@@ -9,14 +9,14 @@
       <div class="ml-5 w-0 flex-1">
         <dl>
           <dt class="text-sm leading-5 font-medium text-gray-500 truncate">
-            {{ $title }}
+            Bounce Rate
           </dt>
           <dd class="flex items-baseline">
             <div class="text-2xl leading-8 font-semibold text-gray-900">
-              {{ $period }}%
+              {{ number_format($period, 1) }}%
             </div>
             @if ($diff > 0)
-            <div class="ml-2 flex items-baseline text-sm leading-5 font-semibold text-green-600" title="Changed from {{ $compare }}%">
+            <div class="ml-2 flex items-baseline text-sm leading-5 font-semibold text-green-600" title="Changed from {{ number_format($compare, 1) }}%">
               <svg class="self-center flex-shrink-0 h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd" />
               </svg>
@@ -26,7 +26,7 @@
               {{ number_format($diff, 0) }}%
             </div>
             @elseif ($diff < 0)
-            <div class="ml-2 flex items-baseline text-sm leading-5 font-semibold text-red-600" title="Changed from {{ $compare }}%">
+            <div class="ml-2 flex items-baseline text-sm leading-5 font-semibold text-red-600" title="Changed from {{ number_format($compare, 1) }}%">
               <svg class="self-center flex-shrink-0 h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
