@@ -73,6 +73,8 @@ The data returned is an array with the column and sessions ordered high to low.
 
 The system comes with several [view components](https://laravel.com/docs/8.x/blade#components) out the box for working with the data. They are based on [Tailwind](https://tailwindcss.com/) and the design can be found below.
 
+![1](https://jakey.ams3.cdn.digitaloceanspaces.com/site/5DRtueBtmY9JqhQvtHvlsAtLvpT5aQGmGDkERRcX.png)
+
 You can use these with the tags:
 
 ```php
@@ -84,6 +86,7 @@ $p = Period::days(7);
 <x-analytics-uniques :p="$p"/>
 <x-analytics-views :p="$p"/>
 <x-analytics-bounce :p="$p"/>
+<x-analytics-duration :p="$p"/>
 ```
 
 ## FAQ

@@ -20,25 +20,12 @@ class Bounce extends Component
      *
      * @return void
      */
-<<<<<<< HEAD
-    public function __construct($title = 'Bounce')
-    {
-        $this->title = $title;
-
-        $data = (new \Jakeydevs\Analytics\Actions\Stats\Bounce)->get([
-            'period' => 'today',
-        ]);
-        $this->period = $data['period'];
-        $this->compare = $data['compare'];
-        $this->diff = $data['change'];
-=======
     public function __construct(Period $p)
     {
         //-- Generate data
         $this->period = \Jakeydevs\Analytics\Analytics::getBounceRate($p);
         $this->compare = \Jakeydevs\Analytics\Analytics::getBounceRate(Period::compare($p));
         $this->diff = $this->getComparison($this->compare, $this->period);
->>>>>>> 9a4d1f3836733f53f3d3fd75269001c65b7268e3
     }
 
     /**
