@@ -64,7 +64,6 @@ class ParsePageview extends Command
 
         //-- Location
         $location = $parse->getLocationFromIP($pv->ip);
-        $location = $parse->getLocationFromIP(env('MY_IP'));
         $this->info("   [LOCATION] -> " . $location);
         $info = array_merge($info, [
             'location' => $location,
