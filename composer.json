@@ -11,7 +11,6 @@
   ],
   "require": {
     "php": ">=7.2",
-    "laravel/laravel": "^8.0",
     "whichbrowser/parser": "^2.0",
     "geoip2/geoip2": "^2.11"
   },
