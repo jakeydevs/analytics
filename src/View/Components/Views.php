@@ -23,8 +23,8 @@ class Views extends Component
     public function __construct(Period $p)
     {
         //-- Generate data
-        $this->period = \Jakeydevs\Analytics\Analytics::getUnique($p);
-        $this->compare = \Jakeydevs\Analytics\Analytics::getUnique(Period::compare($p));
+        $this->period = \Jakeydevs\Analytics\Analytics::getPageviews($p);
+        $this->compare = \Jakeydevs\Analytics\Analytics::getPageviews(Period::compare($p));
         $this->diff = $this->getComparison($this->compare, $this->period);
     }
 

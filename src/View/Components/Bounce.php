@@ -23,8 +23,8 @@ class Bounce extends Component
     public function __construct(Period $p)
     {
         //-- Generate data
-        $this->period = \Jakeydevs\Analytics\Analytics::getPageviews($p);
-        $this->compare = \Jakeydevs\Analytics\Analytics::getPageviews(Period::compare($p));
+        $this->period = \Jakeydevs\Analytics\Analytics::getBounceRate($p);
+        $this->compare = \Jakeydevs\Analytics\Analytics::getBounceRate(Period::compare($p));
         $this->diff = $this->getComparison($this->compare, $this->period);
     }
 

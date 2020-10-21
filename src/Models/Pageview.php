@@ -9,6 +9,9 @@ class Pageview extends Model
 {
     use HasFactory;
 
+    /** @var Array */
+    public $guarded = [];
+
     protected static function newFactory()
     {
         return new PageviewFactory;

@@ -12,7 +12,7 @@ trait Diff
      * @param int $new
      * @return void
      */
-    public function getComparison(int $old, int $new)
+    public function getComparison($old, $new)
     {
         if (($old == 0) || ($new == 0)) {return 0;}
         $decreased = $new - $old;
