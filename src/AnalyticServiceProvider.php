@@ -30,6 +30,15 @@ class AnalyticServiceProvider extends ServiceProvider
         //-- Load database
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
+        //-- Load resources
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'analytics');
+        $this->loadViewComponentsAs('analytics', [
+            \Jakeydevs\Analytics\View\Components\Views::class,
+            \Jakeydevs\Analytics\View\Components\Uniques::class,
+            \Jakeydevs\Analytics\View\Components\Bounce::class,
+            \Jakeydevs\Analytics\View\Components\Duration::class,
+        ]);
+
         //-- Create our middleware
         $router = $this->app->make(\Illuminate\Routing\Router::class);
         $router->aliasMiddleware(

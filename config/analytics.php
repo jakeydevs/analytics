@@ -57,7 +57,7 @@ return [
     |
     | Supported: "cron", "queue", "request"
      */
-    'parse' => 'queue',
+    'parse' => 'request',
     'parse_queue' => 'default',
 
 ];
